@@ -3,72 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UA-KOZAKI-CS2.FUN</title>
+<title>UA-KOZAKY-CS2.FUN</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <div class="top-bar">
-    <span class="site-title">UA-KOZAKI-CS2.FUN</span>
-    <a class="steam-btn" href="/auth/steam">Увійти через Steam</a>
+    <span class="site-title">UA-KOZAKY-CS2.FUN</span>
+    <nav class="menu">
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#top">Top Players</a>
+      <a href="#contact">Contact</a>
+      <a class="steam-btn" href="/auth/steam">Login Steam</a>
+    </nav>
   </div>
 </header>
 
-<section class="hero">
-    <h2>Ласкаво просимо на наш CS2 сервер! 🇺🇦</h2>
-    <p>Приєднуйся до козацької команди та грай онлайн!</p>
-
-    <div class="server-box">
-        <p><strong>IP:</strong> Невідомо</p>
-        <p><strong>Статус:</strong> <span id="serverStatus">Перевірка...</span></p>
+<section id="home" class="hero">
+    <div class="hero-banner">
+        <!-- тут згодом можна вставити справжню картинку -->
+        <div class="banner-text">UA KOZAKY CS2</div>
     </div>
 
-    <div id="profile" class="profile-box" style="display:none;">
-        <img id="avatar" width="80" style="border-radius:50%;">
-        <h3 id="nickname"></h3>
-        <a href="/logout" class="steam-btn">Вийти</a>
-    </div>
+    <div class="main-content">
+        <div class="left-block">
+            <div class="server-box">
+                <p><strong>IP:</strong> Невідомо</p>
+                <p><strong>Статус:</strong> <span id="serverStatus">Перевірка...</span></p>
+            </div>
 
-    <a href="https://send.monobank.ua/jar/7GtGUjMe7n" class="donate" target="_blank">
-        💰 Підтримати сервер
-    </a>
-</section>
+            <a href="https://send.monobank.ua/jar/7GtGUjMe7n" class="donate" target="_blank">
+                💰 Підтримати сервер
+            </a>
 
-<section class="top-players">
-    <h2>🏆 ТОП ГРАВЦІ</h2>
-    <ul id="topList">
-        <li>Player1 — 1000 очок</li>
-        <li>Player2 — 900 очок</li>
-        <li>Player3 — 850 очок</li>
-    </ul>
-</section>
+            <div id="profile" class="profile-box" style="display:none;">
+                <img id="avatar" width="80" style="border-radius:50%;">
+                <h3 id="nickname"></h3>
+                <a href="/logout" class="steam-btn small">Logout</a>
+            </div>
+        </div>
 
-<section class="skin-changer">
-    <h2>🎨 Skin Changer</h2>
-    <label for="weapon">Виберіть зброю:</label>
-    <select id="weapon">
-        <option value="ak47">AK-47</option>
-        <option value="m4a1">M4A1</option>
-        <option value="awp">AWP</option>
-        <option value="usp">USP-S</option>
-    </select>
-
-    <label for="skin">Виберіть скіни:</label>
-    <select id="skin">
-        <option value="redline">Redline</option>
-        <option value="hyperbeast">Hyper Beast</option>
-        <option value="dragon">Dragon Lore</option>
-        <option value="default">Default</option>
-    </select>
-
-    <div class="preview">
-        <img id="skinPreview" src="" alt="Skin Preview" width="300">
+        <aside id="top" class="top-players">
+            <h2>🏆 ТОП ГРАВЦІ</h2>
+            <ul id="topList"></ul>
+        </aside>
     </div>
 </section>
 
-<footer>
-&copy; UA-KOZAKI-CS2.FUN — Всі права захищені
+<section id="shop" class="shop-section">
+    <h2>🔥 Магазин кейсів</h2>
+    <p>Тут будуть твої кейси та скіни</p>
+</section>
+
+<footer id="contact">
+&copy; UA-KOZAKY-CS2.FUN — Всі права захищені
 </footer>
 
 <script src="script.js"></script>
