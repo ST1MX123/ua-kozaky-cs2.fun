@@ -1,125 +1,138 @@
+/* base */
 body {
-    margin:0;
+    margin: 0;
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#0f0f0f,#1a1a1a);
-    color:white;
-    text-align:center;
+    background: #0f0f0f;
+    color: white;
 }
 
+/* header */
 header {
-    background:#111;
-    padding:10px 20px;
-    box-shadow:0 0 15px rgba(255,0,0,0.3);
+    background: #111;
+    padding: 10px 20px;
+    box-shadow: 0 0 12px rgba(255,0,0,0.3);
 }
-
 .top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
 .site-title {
-    font-size:24px;
-    font-weight:bold;
-    color:#ff4444;
+    font-size: 26px;
+    font-weight: bold;
+    color: #ff4444;
+}
+.menu a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+.menu a:hover {
+    color: #00aaff;
 }
 
 .steam-btn {
     background: #1b75bc;
-    color: white;
     padding: 8px 16px;
     border-radius: 6px;
-    text-decoration: none;
+    color: white;
     font-weight: bold;
-    transition: 0.3s;
+    transition: .3s;
 }
-
 .steam-btn:hover {
     background: #00aaff;
-    transform: scale(1.05);
 }
 
+/* hero & layout */
 .hero {
-    padding:50px 20px;
-}
-
-.server-box {
-    background:#1c1c1c;
-    padding:20px;
-    border-radius:12px;
-    margin:20px auto;
-    width:320px;
-    box-shadow:0 0 20px rgba(0,255,0,0.3);
-}
-
-.donate {
-    display:inline-block;
-    margin:10px;
-    padding:14px 28px;
-    background:green;
-    color:white;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    text-decoration:none;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-.donate:hover {
-    background:limegreen;
-    transform:scale(1.05);
-}
-
-.profile-box {
-    margin-top:25px;
-}
-
-.top-players {
-    margin-top:50px;
-}
-
-ul {
-    list-style:none;
-    padding:0;
-}
-
-li {
-    background:#1c1c1c;
-    margin:6px auto;
-    padding:12px;
-    width:270px;
-    border-radius:8px;
-    box-shadow:0 0 10px rgba(255,255,255,0.1);
-}
-
-.skin-changer {
-    margin: 40px auto;
     padding: 20px;
-    background: #1c1c1c;
-    border-radius: 12px;
-    width: 350px;
-    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+.hero-banner {
+    height: 200px;
+    background: url("https://via.placeholder.com/1200x200/222/ff4444?text=UA+KOZAKY+CS2") no-repeat center/cover;
+    position: relative;
+}
+.banner-text {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
+/* content layout */
+.main-content {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.left-block {
+    flex: 2;
     text-align: center;
 }
 
-.skin-changer select {
-    margin: 10px 0;
-    padding: 8px;
-    width: 80%;
-    border-radius: 6px;
-    border: none;
+/* server & profile */
+.server-box {
+    background: #222;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px auto;
+    width: 300px;
+}
+.donate {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 24px;
+    background: green;
+    border-radius: 8px;
+    text-decoration: none;
 }
 
-.skin-changer img {
+/* profile */
+.profile-box {
     margin-top: 20px;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0,255,0,0.3);
 }
 
+/* top players */
+.top-players {
+    flex: 1;
+    background: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    width: 260px;
+}
+.top-players h2 {
+    margin-top: 0;
+}
+.top-players ul {
+    list-style: none;
+    padding: 0;
+}
+.top-players li {
+    background: #222;
+    margin: 6px 0;
+    padding: 10px;
+    border-radius: 6px;
+}
+
+/* shop */
+.shop-section {
+    margin: 40px auto;
+    text-align: center;
+    padding: 30px;
+    background: #111;
+    border-radius: 8px;
+}
+
+/* footer */
 footer {
-    margin-top:40px;
-    padding:20px;
-    background:#111;
-    color:#aaa;
+    padding: 15px;
+    background: #111;
+    margin-top: 40px;
+    color: #aaa;
+    text-align: center;
 }
