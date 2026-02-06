@@ -1,65 +1,63 @@
-const express = require('express');
-const session = require('express-session');
-const passport = require('passport');
-const SteamStrategy = require('passport-steam').Strategy;
-const path = require('path');
+const express = require("express");
+const mongoose = require("mongoose");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.use(express.json());
+app.use(express.static("public"));
 
-// Статичні файли
-app.use(express.static(path.join(__dirname)));
+mongoose.connect("YOUR_MONGODB_URL");
 
-// Сесії
-app.use(session({
-    secret: 'ua-kozaky-secret',
-    resave: false,
-    saveUninitialized: true
-}));
-
-// Passport Steam
-passport.serializeUser((user, done) => done(null, user));
-passport.deserializeUser((obj, done) => done(null, obj));
-
-passport.use(new SteamStrategy({
-    returnURL: 'https://ua-kozaky-cs2-fun.onrender.com/auth/steam/return', 
-    realm: 'https://ua-kozaky-cs2-fun.onrender.com/',
-    apiKey: 'CC2CBE4BC8F74FAD5E8EDB850AB5C982' // ← заміни на свій ключ
-}, (identifier, profile, done) => {
-    profile.identifier = identifier;
-    return done(null, profile);
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Steam маршрути
-app.get('/auth/steam', passport.authenticate('steam'));
-
-app.get('/auth/steam/return', 
-    passport.authenticate('steam', { failureRedirect: '/' }),
-    (req, res) => res.redirect('/')
-);
-
-app.get('/logout', (req, res) => {
-    req.logout(() => { res.redirect('/'); });
+const userSchema = new mongoose.Schema({
+  steamId: String,
+  balance: { type: Number, default: 1000 },
+  openedCases: { type: Number, default: 0 }
 });
 
-// Головна
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+const User = mongoose.model("User", userSchema);
+
+const caseItems = [
+  { name: "AK-47 Redline", chance: 40, price: 200 },
+  { name: "AWP Asiimov", chance: 25, price: 500 },
+  { name: "M4A4 Howl", chance: 5, price: 2000 },
+  { name: "Glock Fade", chance: 30, price: 300 }
+];
+
+function openCase() {
+  const rand = Math.random() * 100;
+  let sum = 0;
+
+  for (let item of caseItems) {
+    sum += item.chance;
+    if (rand <= sum) return item;
+  }
+}
+
+app.post("/open-case", async (req, res) => {
+  const { steamId } = req.body;
+
+  let user = await User.findOne({ steamId });
+  if (!user) {
+    user = await User.create({ steamId });
+  }
+
+  if (user.balance < 100) {
+    return res.json({ error: "Недостатньо балансу" });
+  }
+
+  const reward = openCase();
+
+  user.balance -= 100;
+  user.balance += reward.price;
+  user.openedCases += 1;
+
+  await user.save();
+
+  res.json({ reward, balance: user.balance });
 });
 
-// API профілю
-app.get('/api/profile', (req, res) => {
-    if(req.user){
-        res.json({
-            nickname: req.user.displayName,
-            avatar: req.user.photos[2].value
-        });
-    } else {
-        res.json({ nickname: null, avatar: null });
-    }
+app.get("/top-players", async (req, res) => {
+  const players = await User.find().sort({ balance: -1 }).limit(5);
+  res.json(players);
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(3000, () => console.log("Server running"));
