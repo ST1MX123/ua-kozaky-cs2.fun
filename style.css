@@ -14,7 +14,7 @@ header {
 
 .top-bar {
     display: flex;
-    justify-content: space-between; /* Назва зліва, кнопка справа */
+    justify-content: space-between;
     align-items: center;
 }
 
