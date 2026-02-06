@@ -11,7 +11,7 @@
 <header>
   <div class="top-bar">
     <span class="site-title">UA-KOZAKI-CS2.FUN</span>
-    <a class="steam-btn" href="#">Увійти через Steam</a>
+    <a class="steam-btn" href="/auth/steam">Увійти через Steam</a>
   </div>
 </header>
 
@@ -27,6 +27,7 @@
     <div id="profile" class="profile-box" style="display:none;">
         <img id="avatar" width="80" style="border-radius:50%;">
         <h3 id="nickname"></h3>
+        <a href="/logout" class="steam-btn">Вийти</a>
     </div>
 
     <a href="https://send.monobank.ua/jar/7GtGUjMe7n" class="donate" target="_blank">
@@ -36,7 +37,11 @@
 
 <section class="top-players">
     <h2>🏆 ТОП ГРАВЦІ</h2>
-    <ul id="topList"></ul>
+    <ul id="topList">
+        <li>Player1 — 1000 очок</li>
+        <li>Player2 — 900 очок</li>
+        <li>Player3 — 850 очок</li>
+    </ul>
 </section>
 
 <section class="skin-changer">
